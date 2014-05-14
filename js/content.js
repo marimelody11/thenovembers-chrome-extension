@@ -1,7 +1,7 @@
 google.load("feeds", "1");
 function initialize() {
 
-	var feed = new google.feeds.Feed("http://the-novembers.com/live/feed/");
+	var feed = new google.feeds.Feed("http://the-novembers.com/live/feed"+"?"+(new Date()).getTime());
 	feed.setNumEntries(10);
 
 	feed.load(function(result) {
