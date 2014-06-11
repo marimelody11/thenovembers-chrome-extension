@@ -1,13 +1,13 @@
 google.load("feeds", "1");
 function initialize() {
-
-	var feed = new google.feeds.Feed("http://the-novembers.com/live/feed"+"?"+(new Date()).getTime());
+	var feed = new google.feeds.Feed("http://the-novembers.com/live/feed");
 	feed.setNumEntries(10);
 
 	feed.load(function(result) {
 		if (!result.error) {
-			var container = document.getElementById("feed");
+			var feedContent = document.getElementById("feed");
 			var html = "";
+
 			for (var i = 0; i < result.feed.entries.length; i++) {
 				var entry = result.feed.entries[i];
 
@@ -38,12 +38,12 @@ function initialize() {
 				title = title[1];
 
 				if(entryDate >= currentDate){
-					html = "<h2>" + year + "/" + month + "/" + day + "(" + week + ")<br><a href='" + entry.link + "'>" + title + "</a></h2><div class='entry'>" + entry.content + "</div>";
-					container.innerHTML = html;
-					$("h2,.entry").not("eq(0)").hide();
+					html += "<li><h2>" + year + "/" + month + "/" + day + "(" + week + ")<br>" + title + "</h2><div class='entry'>" + entry.content + "</div></li>";
 				}
 			}
-			document.write(html);
+
+			feedContent.innerHTML = html;
+			feedContent.firstChild.style.display = "block";
 		}
 	});
 }
