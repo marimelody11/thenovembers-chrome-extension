@@ -8,6 +8,13 @@ function initialize() {
 			var feedContent = document.getElementById("feed");
 			var html = "";
 
+			//現在の日付
+			var current = new Date();
+			var currentYear = current.getFullYear();
+			var currentMonth = current.getMonth()+1;
+			var currentDay = current.getDate();
+			var currentDate = new Date(currentYear + "/" + currentMonth + "/" + currentDay);
+
 			for (var i = 0; i < result.feed.entries.length; i++) {
 				var entry = result.feed.entries[i];
 
@@ -21,13 +28,6 @@ function initialize() {
 				day = day[0];
 				var entryDate = new Date(year + "/" + month + "/" + day);
 
-				//現在の日付
-				var current = new Date();
-				var currentYear = current.getFullYear();
-				var currentMonth = current.getMonth()+1;
-				var currentDay = current.getDate();
-				var currentDate = new Date(currentYear + "/" + currentMonth + "/" + currentDay);
-
 				//曜日
 				var week = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 				week = week[entryDate.getDay()];
@@ -37,13 +37,15 @@ function initialize() {
 				title = title.split(")");
 				title = title[1];
 
+				//コンテンツ
+				var content = entry.content.split('<p style="color:#000000">').join('<p>');
+
 				if(entryDate >= currentDate){
-					html += "<li><h2>" + year + "/" + month + "/" + day + "(" + week + ")<br>" + title + "</h2><div class='entry'>" + entry.content + "</div></li>";
+					html += "<li><h2>" + year + "/" + month + "/" + day + "(" + week + ")<br>" + title + "</h2><div class='entry'>" + content + "</div></li>";
 				}
 			}
 
 			feedContent.innerHTML = html;
-			feedContent.firstChild.style.display = "block";
 		}
 	});
 }
