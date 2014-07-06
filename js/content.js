@@ -37,11 +37,20 @@ function initialize() {
 				title = title.split(")");
 				title = title[1];
 
+				//カウントダウン
+				var countdown = "";
+				remainDay = Math.floor((entryDate - currentDate) / (24*60*60*1000));
+				if(remainDay == 0){
+					countdown = "Today!";
+				}else{
+					countdown = remainDay + "days later.";
+				}
+
 				//コンテンツ
 				var content = entry.content.split('<p style="color:#000000">').join('<p>');
 
 				if(entryDate >= currentDate){
-					html += "<li><h2>" + year + "/" + month + "/" + day + "(" + week + ")<br>" + title + "</h2><div class='entry'>" + content + "</div></li>";
+					html += "<li><h2>" + year + "/" + month + "/" + day + " (" + week + ")<span class='countdown'>" + countdown + "</span><br>" + title + "</h2><div class='entry'>" + content + "</div></li>";
 				}
 			}
 

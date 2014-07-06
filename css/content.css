@@ -44,6 +44,7 @@ h2{
 	margin: 0 0 15px 0;
 	padding: 0 0 15px 0;
 	border-bottom: 1px solid #fff;
+	line-height: 2;
 }
 
 li{
@@ -52,6 +53,33 @@ li{
 
 li:first-child{
 	display: block;
+}
+
+.countdown{
+	position: relative;
+	display: inline-block;
+	padding: 0 10px;
+	margin: 0 0 0 12px;
+	font-size: 12px;
+	width: auto;
+	height: 23px;
+	color: #000;
+	line-height: 23px;
+	text-align: center;
+	background: #fff;
+	z-index: 0;
+}
+.countdown:after {
+	content: "";
+	position: absolute;
+	top: 50%; left: -4px;
+	margin-top: -4px;
+	display: block;
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 4px 4px 4px 0;
+	border-color: transparent #fff transparent transparent;
 }
 
 .entry{
